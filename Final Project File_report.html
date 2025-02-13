@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head profile="http://www.ietf.org/rfc/rfc2731.txt">
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script type="text/javascript">//
+
+function ShowRow(strRowId, strVisibility)
+{
+if(document.compatMode && document.compatMode == "CSS1Compat" && document.documentMode && document.documentMode == "8")
+{
+document.getElementById(strRowId).style.visibility = strVisibility;
+}
+else if(navigator.product == "Gecko" && navigator.productSub && navigator.productSub > "20041010")
+{
+document.getElementById(strRowId).style.visibility = strVisibility;
+}
+else if(strVisibility == "visible")
+{
+  // If IE < 11
+  if (document.all && document.compatMode && document.compatMode == "CSS1Compat" && !window.opera) {
+    document.getElementById(strRowId).style.display = "block";
+  }
+  // Else any other browser
+  else {
+    document.getElementById(strRowId).style.display = "table-row";
+  }
+}
+else if(strVisibility == "collapse")
+  {
+  document.getElementById(strRowId).style.display = "none";
+  };
+}
+
+function HideChildRows(strRowId)
+{
+  var element;
+  element = document.getElementById(strRowId + '.expander');
+  if (element) element.style.display = "inline";
+  element = document.getElementById(strRowId + '.contractor');
+  if (element) element.style.display = "none";
+  
+  var rows = document.getElementsByTagName('tr');
+  for (i=0; i<rows.length; i++)
+  {
+    if (rows[i].id != strRowId && rows[i].id.substring(0, strRowId.length) == strRowId) 
+	{
+	  ShowRow(rows[i].id, 'collapse');
+      var element;
+      element = document.getElementById(rows[i].id + '.expander');
+      if (element) element.style.display = "inline";
+      element = document.getElementById(rows[i].id + '.contractor');
+      if (element) element.style.display = "none";
+	}
+  }
+}
+
+function ShowChildRows(strRowId)
+{
+  document.getElementById(strRowId + '.expander').style.display = "none";
+  document.getElementById(strRowId + '.contractor').style.display = "inline";
+
+  var rows = document.getElementsByTagName('tr');
+  for (i=0; i<rows.length; i++)
+  {
+    if (rows[i].id != strRowId && rows[i].id.substring(0, strRowId.length) == strRowId && rows[i].id.lastIndexOf('.') == strRowId.length)
+	{
+	  ShowRow(rows[i].id, 'visible');
+	}
+  }
+}
+
+
+function init()
+{
+//document.forms[0].reset();
+
+}
+//</script>
+<style type="text/css">
+  body
+  {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  color:#333333;
+  }
+  table
+  {
+  padding: 5px;
+  margin: 5px;
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse:collapse;
+  }
+  td, th
+  {
+  font-size:0.75em;
+  border:1px solid #A9A9A9;
+  padding:3px 7px 2px 7px;
+  }
+  th
+  {
+  font-weight:bold;
+  font-size:0.9em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A9A9A9;
+  color:#ffffff;
+  }
+  div
+  {
+  margin: 5px;
+  padding: 5px;
+  }
+  .table-label
+  {
+  font-size:1em;
+  margin: 5px;
+  font-weight:bold;
+  color:#333333;
+  }
+  .section-label
+  {
+  font-size:1em;
+  margin: 5px;
+  font-weight:bold;
+  color:#333333;
+  }
+  .text-label
+  {
+  margin: 5px;
+  font-size:1em;
+  font-weight:bold;
+  color:#333333;
+  }
+  .image-label
+  {
+  font-size:1em;
+  font-weight:bold;
+  color:#333333;
+  }
+  .link-label
+  {
+  font-size:1em;
+  font-weight:bold;
+  color:#333333;
+  }
+  .section-div
+  {
+  border: 1px #A9A9A9 solid; padding: 5px; margin: 5px; overflow: auto;
+  }
+  .title-section-div
+  {
+  border: 0px #A9A9A9 solid; padding: 5px; margin: 5px; overflow: hidden;
+  text-align: left;
+  }
+  .text-div
+  {
+  border: 0px #A9A9A9 solid; padding: 5px; margin: 5px;
+  }
+  .table-div
+  {
+  border: 0px #A9A9A9 solid; padding: 5px; margin: 5px;
+  }
+  .image-div
+  {
+  border: 0px #A9A9A9 solid; padding: 0px; margin: 5px;
+  }
+  .link-div
+  {
+  border: 0px #A9A9A9 solid; padding: 5px; margin: 5px;
+  }
+  .table-cell-warning
+  {
+  background-image:url('updateRequired.png');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center center;
+  }
+  .pre-notes
+  {
+  display: table-cell; 
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  }
+
+</style>
+</head>
+<body onload="init();">
+<div class="title-section-div">
+    <div class="image-div" style="max-width: 100%;">
+<div style="padding: 0px; margin: 0px; border: 0px #FF0000 solid; display:inline-block; max-width: 100%;">
+<div style="padding: 0px; margin: 0px; border: 0px #A9A9A9 solid; display:inline-block; max-width: 100%; overflow: auto;">
+<img alt="" src="Final Project File_report_images/AnsysReportLogo.png" border="0"></div>
+<div style="text-align: center; width: 100%"></div>
+</div>
+</div>
+    <div class="table-div">
+<span class="table-label">Summary</span>
+<br>
+<table>
+<tr>
+<td>Project:</td><td style="&#10;                    background-color:White;&#10;                    color:Black;&#10;                    font-weight:bold;&#10;                    border: 1px Navy solid;&#10;                  ">Final Project File</td>
+</tr>
+<tr>
+<td>Date:</td><td style="&#10;                    background-color:White;&#10;                    color:Black;&#10;                    font-weight:bold;&#10;                    border: 1px Navy solid;&#10;                  ">26-08-2024</td>
+</tr>
+<tr>
+<td>Time:</td><td style="&#10;                    background-color:White;&#10;                    color:Black;&#10;                    font-weight:bold;&#10;                    border: 1px Navy solid;&#10;                  ">19:14:25</td>
+</tr>
+<tr>
+<td>Product Version:</td><td style="&#10;                    background-color:White;&#10;                    color:Black;&#10;                    font-weight:bold;&#10;                    border: 1px Navy solid;&#10;                  ">2024 R2</td>
+</tr>
+<tr>
+<td>Last Saved Version:</td><td style="&#10;                    background-color:White;&#10;                    color:Black;&#10;                    font-weight:bold;&#10;                    border: 1px Navy solid;&#10;                  ">2024 R2</td>
+</tr>
+</table>
+</div>
+  <hr>
+</div>
+<div class="image-div" style="max-width: 99%;">
+<div style="text-align: left; width: 100%;font-weight:bold;">Project Schematic Pane</div>
+<div style="padding: 0px; margin: 0px; border: 0px #FF0000 solid; display:inline-block; max-width: 100%;">
+<div style="padding: 0px; margin: 0px; border: 1px #A9A9A9 solid; display:inline-block; max-width: 100%; overflow: auto;">
+<img alt="Project Schematic Pane" src="Final Project File_report_images/ProjectSchematic.png" border="0"></div>
+</div>
+</div>
+<div class="table-div">
+<span class="table-label">Files</span>
+<br>
+<table>
+<tr>
+<th>Name</th><th>Size</th><th>Type</th><th>Date Modified</th><th>Location</th>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80C1A8">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80C1A8');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/EngDataLibrary16x16.png">material.engd</td><td style="">48 KB</td><td style="">Engineering Data File</td><td style="">26-08-2024 14:31:29</td><td style="">dp0\SYS\ENGD</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80C310">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80C310');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/EngDataLibrary16x16.png">SYS.engd</td><td style="">48 KB</td><td style="">Engineering Data File</td><td style="">26-08-2024 14:31:29</td><td style="">dp0\global\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80C478">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80C478');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/generic.png">SYS.agdb</td><td style="">140 KB</td><td style="">Geometry File</td><td style="">26-08-2024 14:30:43</td><td style="">dp0\SYS\DM</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80C5E0">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80C5E0');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/mechanical.png">SYS.mechdb</td><td style="">6 MB</td><td style="">Mechanical Project File</td><td style="">26-08-2024 19:13:24</td><td style="">dp0\global\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80C748">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80C748');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/Project.png">Final Project File.wbpj</td><td style="">53 KB</td><td style="">Workbench Project File</td><td style="">26-08-2024 19:13:52</td><td style="">C:\Users\Aditya\OneDrive - YA\Desktop\Mechanics Of Materials\Project\Main Project File</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80C8B0">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80C8B0');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">act.dat</td><td style="">259 KB</td><td style="">ACT Database</td><td style="">26-08-2024 19:13:48</td><td style="">dp0</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80CA18">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80CA18');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/EngDataLibrary16x16.png">EngineeringData.xml</td><td style="">47 KB</td><td style="">Engineering Data File</td><td style="">26-08-2024 19:13:50</td><td style="">dp0\SYS\ENGD</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80CB80">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80CB80');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">CAERep.xml</td><td style="">39 KB</td><td style="">CAERep File</td><td style="">26-08-2024 19:01:32</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80CCE8">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80CCE8');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">CAERepOutput.xml</td><td style="">862 B</td><td style="">CAERep File</td><td style="">26-08-2024 19:02:07</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80CE50">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80CE50');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">ds.dat</td><td style="">1 MB</td><td style="">.dat</td><td style="">26-08-2024 19:01:32</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80CFB8">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80CFB8');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file.aapresults</td><td style="">471 B</td><td style="">.aapresults</td><td style="">26-08-2024 19:02:08</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80D120">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80D120');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file.cnd</td><td style="">74 KB</td><td style="">.cnd</td><td style="">26-08-2024 19:01:54</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80D288">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80D288');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file.gst</td><td style="">8 KB</td><td style="">.gst</td><td style="">26-08-2024 19:01:54</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80D3F0">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80D3F0');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file.mntr</td><td style="">2 KB</td><td style="">.mntr</td><td style="">26-08-2024 19:01:54</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80D558">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80D558');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file.rst</td><td style="">19 MB</td><td style="">ANSYS Result File</td><td style="">26-08-2024 19:01:55</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80D6C0">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80D6C0');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file0.err</td><td style="">836 B</td><td style="">.err</td><td style="">26-08-2024 19:01:54</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C80D828">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C80D828');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">file0.PCS</td><td style="">59 KB</td><td style="">.pcs</td><td style="">26-08-2024 19:01:54</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C8131B0">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C8131B0');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">MatML.xml</td><td style="">49 KB</td><td style="">CAERep File</td><td style="">26-08-2024 19:01:32</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C813318">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C813318');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DefaultFile.png">solve.out</td><td style="">51 KB</td><td style="">.out</td><td style="">26-08-2024 19:01:56</td><td style="">dp0\SYS\MECH</td>
+</tr>
+<tr id="N0000008B50A0B360N0000008B4C813480">
+<td style="&#10;            padding-left: 40px; text-indent: -35px;&#10;        "><img style="display: inline; margin-right: 5px;" height="1" width="9" src="Final Project File_report_images/spacer.gif" onclick="javascript:HideChildRows('N0000008B50A0B360N0000008B4C813480');"><img style="display: inline; margin-right: 5px; vertical-align: middle;" src="Final Project File_report_images/DesignPoint.png">designPoint.wbdp</td><td style="">140 KB</td><td style="">Workbench Design Point File</td><td style="">26-08-2024 19:13:52</td><td style="">dp0</td>
+</tr>
+</table>
+</div>
+<div class="section-div">
+<span class="section-label">Static Structural</span>
+<br>
+  </div>
+<div class="section-div">
+<span class="section-label">Active Design Point</span>
+<br>
+  </div>
+<br>
+</body>
+</html>
